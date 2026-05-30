@@ -1,4 +1,5 @@
 import react, { useState, useEffect } from 'react'
+import legoLogo from '../assets/LEGO_logo.png'
 
 function Form() {
 	const [formLink, setFormLink] = useState('')
@@ -142,7 +143,7 @@ function Form() {
 	return !numberIncorrect ? (
 		<div>
 			<div>
-				<img src={require('../imgs/LogoWhite.png')} alt="Logo" />
+				<img src={legoLogo} style={{ width: '200px', marginTop: '50px' }} alt="Logo" />
 			</div>
 			<div>
 				<div>Tool</div>
@@ -177,7 +178,7 @@ function Form() {
 		<div>
 			<div>
 				<img
-					src={require('../imgs/LogoWhite.png')}
+					src={legoLogo}
 					style={{ width: '200px', marginTop: '50px' }}
 					alt="Logo"
 				/>
