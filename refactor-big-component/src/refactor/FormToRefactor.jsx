@@ -1,3 +1,5 @@
+import react, { useState, useEffect } from 'react'
+
 function Form() {
   const [formLink, setFormLink] = useState('')
   const [userPersona, setUserPersona] = useState('')
@@ -281,3 +283,5 @@ function Form() {
     </div>
   )
 }
+
+export default Form
