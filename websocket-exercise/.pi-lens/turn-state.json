@@ -1,0 +1,117 @@
+{
+  "files": {
+    "server/index.mjs": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 195
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.916Z"
+    },
+    "src/exercise/protocol/types.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 113
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T16:59:31.917Z"
+    },
+    "src/exercise/client/useWebSocket.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 197
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.918Z"
+    },
+    "src/exercise/state/useChat.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 236
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.919Z"
+    },
+    "src/exercise/components/ConnectionBadge.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 50
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.920Z"
+    },
+    "src/exercise/components/MessageFeed.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 97
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.920Z"
+    },
+    "src/exercise/components/Composer.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 102
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.921Z"
+    },
+    "src/exercise/components/UserList.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 42
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T16:59:31.922Z"
+    },
+    "src/exercise/components/UsernamePrompt.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 73
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.923Z"
+    },
+    "src/App.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 92
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T16:59:31.923Z"
+    },
+    "src/styles.css": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 471
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T16:59:31.924Z"
+    }
+  },
+  "turnCycles": 0,
+  "maxCycles": 3,
+  "lastUpdated": "2026-05-31T16:59:31.924Z"
+}

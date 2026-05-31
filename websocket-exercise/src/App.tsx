@@ -1,46 +1,91 @@
-const states = ['connecting', 'open', 'message', 'close', 'retry']
+// =============================================================================
+// 🏠 App.tsx — Main chat application
+// =============================================================================
+//
+// ARCHITECTURE:
+//
+//   ┌──────────────────────────────────────────────┐
+//   │  App                                          │
+//   │  ├── useChat()  ── all state + actions        │
+//   │  │     └── useWebSocket()  ── transport layer │
+//   │  ├── UsernamePrompt  (if not joined)          │
+//   │  └── Chat Layout     (if joined)              │
+//   │       ├── ConnectionBadge                     │
+//   │       ├── UserList                            │
+//   │       ├── MessageFeed                         │
+//   │       └── Composer                            │
+//   └──────────────────────────────────────────────┘
+//
+// DATA FLOW:
+//
+//   Server ──ws──▶ useWebSocket.onMessage ──▶ useChat.handleMessage ──▶ setState ──▶ re-render
+//
+//   User types ──▶ Composer.onSend ──▶ useChat.sendMessage ──▶ useWebSocket.send ──▶ Server
+//
+// Every piece has a single responsibility:
+//   - useWebSocket: connection lifecycle
+//   - useChat: what messages MEAN
+//   - Components: how things LOOK
+// =============================================================================
+
+import { useChat } from "./exercise/state/useChat";
+import { ConnectionBadge } from "./exercise/components/ConnectionBadge";
+import { MessageFeed } from "./exercise/components/MessageFeed";
+import { Composer } from "./exercise/components/Composer";
+import { UserList } from "./exercise/components/UserList";
+import { UsernamePrompt } from "./exercise/components/UsernamePrompt";
 
 export default function App() {
-  return (
-    <main className="page">
-      <section className="hero">
-        <p className="eyebrow">WebSocket practice scaffold</p>
-        <h1>Real-time playground is ready</h1>
-        <p className="lead">
-          The frontend shell and sample WebSocket server are ready. Focus on the client,
-          protocol, connection state, and rendering pushed events.
-        </p>
-      </section>
+	const {
+		username,
+		hasJoined,
+		messages,
+		onlineUsers,
+		typingUsers,
+		status,
+		reconnectAttempt,
+		join,
+		sendMessage,
+	} = useChat();
 
-      <section className="card-grid">
-        <article className="card">
-          <h2>Prepared for you</h2>
-          <ul>
-            <li>React + Vite scaffold</li>
-            <li>Sample WebSocket server at port 4003</li>
-            <li>Starter folders for protocol, client, and UI modules</li>
-          </ul>
-        </article>
+	return (
+		<div className="app">
+			{/* ── Header ─────────────────────────────────────────────────────── */}
+			<header className="app-header">
+				<h1 className="app-title">💬 WebSocket Chat</h1>
+				<ConnectionBadge status={status} reconnectAttempt={reconnectAttempt} />
+			</header>
 
-        <article className="card">
-          <h2>Your implementation</h2>
-          <ul>
-            <li>WebSocket client setup</li>
-            <li>Connection lifecycle state</li>
-            <li>Message parsing and rendering</li>
-            <li>Send + receive event flow</li>
-          </ul>
-        </article>
-      </section>
+			{/* ── Not joined yet: show username prompt ───────────────────────── */}
+			{!hasJoined ? (
+				<UsernamePrompt onJoin={join} disabled={status !== "connected"} />
+			) : (
+				/* ── Joined: show the chat interface ───────────────────────────── */
+				<div className="chat-layout">
+					{/* Sidebar: user list */}
+					<aside className="chat-sidebar">
+						<UserList users={onlineUsers} currentUsername={username} />
+					</aside>
 
-      <section className="card">
-        <h2>Lifecycle states</h2>
-        <div className="pill-row">
-          {states.map((item) => (
-            <span className="pill" key={item}>{item}</span>
-          ))}
-        </div>
-      </section>
-    </main>
-  )
+					{/* Main area: messages + input */}
+					<main className="chat-main">
+						<MessageFeed
+							messages={messages}
+							typingUsers={typingUsers}
+							currentUsername={username}
+						/>
+						<Composer onSend={sendMessage} disabled={false} status={status} />
+					</main>
+				</div>
+			)}
+
+			{/* ── Footer: learning hints ─────────────────────────────────────── */}
+			<footer className="app-footer">
+				<p className="muted">
+					Open this page in <strong>two browser tabs</strong> to chat across
+					them. Kill the server to see reconnect behavior.
+				</p>
+			</footer>
+		</div>
+	);
 }

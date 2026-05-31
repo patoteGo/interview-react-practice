@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/api/productsApi.ts",
+      "file": "src/exercise/api/productsApi.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/mutations/useCreateProductMutation.ts",
+      "file": "src/exercise/mutations/useCreateProductMutation.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/mutations/useToggleStockMutation.ts",
+      "file": "src/exercise/mutations/useToggleStockMutation.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/queries/queryClient.ts",
+      "file": "src/exercise/queries/queryClient.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/queries/useProductsQuery.ts",
+      "file": "src/exercise/queries/useProductsQuery.ts"
+    },
+    {
+      "type": "dependency",
+      "name": "@tanstack/react-query",
+      "file": "package.json",
+      "line": 13
+    }
+  ],
+  "unusedExports": [],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/api/productsApi.ts",
+      "file": "src/exercise/api/productsApi.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/mutations/useCreateProductMutation.ts",
+      "file": "src/exercise/mutations/useCreateProductMutation.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/mutations/useToggleStockMutation.ts",
+      "file": "src/exercise/mutations/useToggleStockMutation.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/queries/queryClient.ts",
+      "file": "src/exercise/queries/queryClient.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/queries/useProductsQuery.ts",
+      "file": "src/exercise/queries/useProductsQuery.ts"
+    }
+  ],
+  "unusedDeps": [
+    {
+      "type": "dependency",
+      "name": "@tanstack/react-query",
+      "file": "package.json",
+      "line": 13
+    }
+  ],
+  "unlistedDeps": [],
+  "summary": "Found 7 issues"
+}

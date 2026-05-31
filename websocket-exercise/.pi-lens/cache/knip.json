@@ -1,0 +1,154 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    },
+    {
+      "type": "export",
+      "name": "BaseMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 20
+    },
+    {
+      "type": "export",
+      "name": "ClientJoinMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 27
+    },
+    {
+      "type": "export",
+      "name": "ClientChatMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "ClientTypingMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "ClientMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 42
+    },
+    {
+      "type": "export",
+      "name": "ServerConnectedMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 49
+    },
+    {
+      "type": "export",
+      "name": "ServerTickMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 54
+    },
+    {
+      "type": "export",
+      "name": "ServerErrorMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 59
+    },
+    {
+      "type": "export",
+      "name": "UserJoinedMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 64
+    },
+    {
+      "type": "export",
+      "name": "UserLeftMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 69
+    },
+    {
+      "type": "export",
+      "name": "UserTypingMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 84
+    }
+  ],
+  "unusedExports": [
+    {
+      "type": "export",
+      "name": "BaseMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 20
+    },
+    {
+      "type": "export",
+      "name": "ClientJoinMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 27
+    },
+    {
+      "type": "export",
+      "name": "ClientChatMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "ClientTypingMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "ClientMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 42
+    },
+    {
+      "type": "export",
+      "name": "ServerConnectedMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 49
+    },
+    {
+      "type": "export",
+      "name": "ServerTickMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 54
+    },
+    {
+      "type": "export",
+      "name": "ServerErrorMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 59
+    },
+    {
+      "type": "export",
+      "name": "UserJoinedMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 64
+    },
+    {
+      "type": "export",
+      "name": "UserLeftMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 69
+    },
+    {
+      "type": "export",
+      "name": "UserTypingMessage",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 84
+    }
+  ],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    }
+  ],
+  "unusedDeps": [],
+  "unlistedDeps": [],
+  "summary": "Found 12 issues"
+}

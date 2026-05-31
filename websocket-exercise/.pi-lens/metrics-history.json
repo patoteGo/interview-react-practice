@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "files": {
+    "server/index.mjs": {
+      "latest": {
+        "commit": "9e2513c",
+        "timestamp": "2026-05-31T16:52:51.590Z",
+        "mi": 49.3,
+        "cognitive": 7,
+        "nesting": 4,
+        "lines": 33,
+        "maxCyclomatic": 2,
+        "entropy": 5.01
+      },
+      "history": [
+        {
+          "commit": "9e2513c",
+          "timestamp": "2026-05-31T16:52:51.590Z",
+          "mi": 49.3,
+          "cognitive": 7,
+          "nesting": 4,
+          "lines": 33,
+          "maxCyclomatic": 2,
+          "entropy": 5.01
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/App.tsx": {
+      "latest": {
+        "commit": "9e2513c",
+        "timestamp": "2026-05-31T16:57:10.739Z",
+        "mi": 46.3,
+        "cognitive": 0,
+        "nesting": 2,
+        "lines": 42,
+        "maxCyclomatic": 1,
+        "entropy": 5.56
+      },
+      "history": [
+        {
+          "commit": "9e2513c",
+          "timestamp": "2026-05-31T16:57:10.739Z",
+          "mi": 46.3,
+          "cognitive": 0,
+          "nesting": 2,
+          "lines": 42,
+          "maxCyclomatic": 1,
+          "entropy": 5.56
+        }
+      ],
+      "trend": "stable"
+    }
+  },
+  "capturedAt": "2026-05-31T16:57:15.739Z"
+}

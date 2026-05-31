@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-05-31T16:50:10.125Z",
+  "scope": "turn_delta",
+  "sessionId": "lens-mpu0k2wh-16ab2b42",
+  "turnIndex": 7,
+  "projectSeqStart": 5,
+  "projectSeqEnd": 8,
+  "deltaOnly": true,
+  "files": [
+    {
+      "filePath": "/Users/patote/learn/interview/interview-react-practice/tanstack-query/src/exercise/components/ProductsPage.tsx",
+      "displayPath": "src/exercise/components/ProductsPage.tsx",
+      "fileSeq": 1,
+      "warnings": [
+        {
+          "id": "cq:3c6bacb984",
+          "filePath": "/Users/patote/learn/interview/interview-react-practice/tanstack-query/src/exercise/components/ProductsPage.tsx",
+          "displayPath": "src/exercise/components/ProductsPage.tsx",
+          "line": 16,
+          "column": 34,
+          "severity": "hint",
+          "tool": "lsp",
+          "rule": "typescript:6385",
+          "message": "'FormEvent' is deprecated.",
+          "category": "type-safety",
+          "origin": "dispatch"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "warnings": 1,
+    "files": 1,
+    "topRules": [
+      {
+        "rule": "typescript:6385",
+        "count": 1
+      }
+    ]
+  }
+}
