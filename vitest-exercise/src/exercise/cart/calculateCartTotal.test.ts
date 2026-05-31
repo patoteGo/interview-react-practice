@@ -1,5 +1,6 @@
 import { describe,expect, it} from 'vitest'
 import { calculateCartTotal } from './calculateCartTotal'
+import { CartLine } from './types'
 
 describe('calculateCartTotal', () => {
 	it('return 0 for a empty cart', () => {

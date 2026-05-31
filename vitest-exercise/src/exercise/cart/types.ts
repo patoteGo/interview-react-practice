@@ -2,7 +2,7 @@ export type CartLine = {
 	id: string
 	name: string
 	price: number
-	quentity: number
+	quantity: number
 }
 
 export type Discount = 
