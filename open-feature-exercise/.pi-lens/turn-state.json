@@ -1,0 +1,107 @@
+{
+  "files": {
+    "src/exercise/flags/flagKeys.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 42
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T17:37:07.498Z"
+    },
+    "src/exercise/provider/createFlagsProvider.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 85
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T17:37:07.500Z"
+    },
+    "src/exercise/evaluationContext.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 83
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T17:37:07.501Z"
+    },
+    "src/exercise/components/NewsFeed.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 80
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T17:37:07.502Z"
+    },
+    "src/exercise/components/PointsColumn.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 51
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T17:37:07.502Z"
+    },
+    "src/exercise/components/BetaSearch.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 78
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T17:37:07.503Z"
+    },
+    "src/exercise/components/PricingCard.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 97
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T17:37:07.504Z"
+    },
+    "src/exercise/components/FlagDashboard.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 158
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T17:37:07.510Z"
+    },
+    "src/main.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 27
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T17:37:07.510Z"
+    },
+    "src/App.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 42
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T17:37:07.511Z"
+    }
+  },
+  "turnCycles": 0,
+  "maxCycles": 3,
+  "lastUpdated": "2026-05-31T17:37:07.511Z"
+}

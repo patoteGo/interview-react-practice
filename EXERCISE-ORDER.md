@@ -17,8 +17,9 @@ Start light. Escalate only when needed.
 2. `tanstack-query`
 3. `cypress-exercise`
 4. `open-feature-exercise`
-5. `websocket-exercise`
-6. `virtualise table`
+5. `sse-exercise`
+6. `websocket-exercise`
+7. `virtualise table`
 
 ---
 

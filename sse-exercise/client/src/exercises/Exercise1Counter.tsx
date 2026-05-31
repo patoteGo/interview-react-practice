@@ -20,7 +20,7 @@
  * └──────────────────────────────────────────────────────────────┘
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SSE_URL = "http://localhost:3001/api/counter";
 
@@ -34,6 +34,23 @@ export default function CounterExercise() {
 	//   3. Updates the `count` state
 	//   4. Sets `connected` to true on open, false on error
 	//   5. Returns a cleanup function that closes the EventSource
+
+	console.log('up1')
+	useEffect(() => {
+		console.log('useeffect up')
+		const source = new EventSource(SSE_URL);
+		source.onopen = () => setConnected(true);
+		source.onerror = () => setConnected(false);
+		source.onmessage = (e) => {
+			const data = JSON.parse(e.data);
+			setCount(data.count);
+		}
+		return () => {
+			source.close();
+		}
+	}, []);
+	// source.onmessage = (e) => setCount(JSON.parse(e.data));
+
 
 	return (
 		<section>

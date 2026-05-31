@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/evaluationContext.ts",
+      "file": "src/exercise/evaluationContext.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/provider/createFlagsProvider.ts",
+      "file": "src/exercise/provider/createFlagsProvider.ts"
+    },
+    {
+      "type": "export",
+      "name": "ALL_FLAG_KEYS",
+      "file": "src/exercise/flags/flagKeys.ts",
+      "line": 38
+    }
+  ],
+  "unusedExports": [
+    {
+      "type": "export",
+      "name": "ALL_FLAG_KEYS",
+      "file": "src/exercise/flags/flagKeys.ts",
+      "line": 38
+    }
+  ],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/evaluationContext.ts",
+      "file": "src/exercise/evaluationContext.ts"
+    },
+    {
+      "type": "file",
+      "name": "src/exercise/provider/createFlagsProvider.ts",
+      "file": "src/exercise/provider/createFlagsProvider.ts"
+    }
+  ],
+  "unusedDeps": [],
+  "unlistedDeps": [],
+  "summary": "Found 4 issues"
+}
