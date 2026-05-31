@@ -11,16 +11,16 @@
 // ─────────────────────────────────────────────────────────────
 
 // TODO: Import the hook you need
-// import { useBooleanFlagValue } from '@openfeature/react-sdk';
-// import { BooleanFlags } from '../flags/flagKeys';
+import { useBooleanFlagValue } from '@openfeature/react-sdk';
+import { BooleanFlags } from '../flags/flagKeys';
 
 export function PointsColumn() {
 	// TODO: Read the boolean flag
-	// const showPoints = useBooleanFlagValue(BooleanFlags.showPoints, false);
+	const showPoints = useBooleanFlagValue(BooleanFlags.showPoints, false);
 	//                                                          ^^^^^ IMPORTANT: safe default
 
 	// FOR NOW: hardcoded so the component renders
-	const showPoints = false; // <-- delete this line and use the flag
+	// const showPoints = false; // <-- delete this line and use the flag
 
 	return (
 		<section className="card">

@@ -74,7 +74,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { OpenFeatureProvider } from '@openfeature/react-sdk'
 import { initFlags } from './exercise/provider/createFlagsProvider'
-import { AppContextProvider } from './exercise/evaluationContext'
+import { AppContextProvider } from './exercise/evaluationContext.tsx'
 import App from './App'
 import './styles.css'
 
@@ -239,7 +239,7 @@ export function PricingCard() {
 
 ---
 
-## evaluationContext.ts (completed)
+## evaluationContext.tsx (completed)
 
-Uncomment the entire `AppContextProvider`, `useAppContext`, and `mapToOpenFeatureContext` sections.
-(See the file — just remove the `/*` and `*/` comment markers.)
+Uncomment the `OpenFeature.setContext(...)` line inside `updateContext`.
+The provider, hook, and mapper are already scaffolded.

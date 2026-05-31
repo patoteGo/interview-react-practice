@@ -32,31 +32,31 @@ import type { EvaluationContext } from "@openfeature/react-sdk";
  */
 const flagConfig = {
 	// ── Boolean flags ──────────────────────────────────────
-	// showPoints: {
-	//   disabled: false,
-	//   variants: { on: true, off: false },
-	//   defaultVariant: 'off',   // SAFEST: hide points by default
-	// },
-	// enableBetaSearch: {
-	//   disabled: false,
-	//   variants: { on: true, off: false },
-	//   defaultVariant: 'off',   // SAFEST: beta off for everyone
-	//   // TODO (Level 3): Add contextEvaluator to enable only for admins
-	//   // contextEvaluator: (ctx: EvaluationContext) => {
-	//   //   return ctx.role === 'admin' ? 'on' : 'off';
-	//   // },
-	// },
+	showPoints: {
+		disabled: false,
+		variants: { on: true, off: false },
+		defaultVariant: "on", // SAFEST: hide points by default
+	},
+	enableBetaSearch: {
+		disabled: false,
+		variants: { on: true, off: false },
+		defaultVariant: "off", // SAFEST: beta off for everyone
+		// TODO (Level 3): Add contextEvaluator to enable only for admins
+		contextEvaluator: (ctx: EvaluationContext) => {
+			return ctx.role === "admin" ? "on" : "off";
+		},
+	},
 	// ── String/variant flags ───────────────────────────────
-	// useNewCheckout: {
-	//   disabled: false,
-	//   variants: { list: 'list', card: 'card' },
-	//   defaultVariant: 'list',  // SAFEST: show familiar list view
-	// },
-	// pricingVariant: {
-	//   disabled: false,
-	//   variants: { default: 'default', discount: 'discount', premium: 'premium' },
-	//   defaultVariant: 'default', // SAFEST: normal pricing
-	// },
+	useNewCheckout: {
+		disabled: false,
+		variants: { list: "list", card: "card" },
+		defaultVariant: "list", // Show card layout (change back to 'list' for safe default)
+	},
+	pricingVariant: {
+		disabled: false,
+		variants: { default: "default", discount: "discount", premium: "premium" },
+		defaultVariant: "premium", // SAFEST: normal pricing
+	},
 } as const;
 
 /**
@@ -67,7 +67,7 @@ const flagConfig = {
  *
  * TODO: Uncomment the line below when you're ready to wire it up.
  */
-// OpenFeature.setProvider(new InMemoryProvider(flagConfig));
+OpenFeature.setProvider(new InMemoryProvider(flagConfig));
 
 /**
  * Export the config for debugging / the dev dashboard.
@@ -80,5 +80,5 @@ export { flagConfig };
  * TODO: Uncomment the body when ready.
  */
 export function initFlags() {
-	// OpenFeature.setProvider(new InMemoryProvider(flagConfig));
+	OpenFeature.setProvider(new InMemoryProvider(flagConfig));
 }

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "files": {
+    "src/exercise/evaluationContext.ts": {
+      "latest": {
+        "commit": "ab4a118",
+        "timestamp": "2026-05-31T19:50:29.381Z",
+        "mi": 54.7,
+        "cognitive": 0,
+        "nesting": 2,
+        "lines": 48,
+        "maxCyclomatic": 2,
+        "entropy": 4.96
+      },
+      "history": [
+        {
+          "commit": "ab4a118",
+          "timestamp": "2026-05-31T19:50:29.381Z",
+          "mi": 54.7,
+          "cognitive": 0,
+          "nesting": 2,
+          "lines": 48,
+          "maxCyclomatic": 2,
+          "entropy": 4.96
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/evaluationContext.tsx": {
+      "latest": {
+        "commit": "ab4a118",
+        "timestamp": "2026-05-31T19:51:30.213Z",
+        "mi": 53.1,
+        "cognitive": 0,
+        "nesting": 2,
+        "lines": 59,
+        "maxCyclomatic": 1,
+        "entropy": 4.91
+      },
+      "history": [
+        {
+          "commit": "ab4a118",
+          "timestamp": "2026-05-31T19:51:30.213Z",
+          "mi": 53.1,
+          "cognitive": 0,
+          "nesting": 2,
+          "lines": 59,
+          "maxCyclomatic": 1,
+          "entropy": 4.91
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/provider/createFlagsProvider.ts": {
+      "latest": {
+        "commit": "ab4a118",
+        "timestamp": "2026-05-31T19:56:52.835Z",
+        "mi": 53.3,
+        "cognitive": 2,
+        "nesting": 1,
+        "lines": 59,
+        "maxCyclomatic": 2,
+        "entropy": 4.64
+      },
+      "history": [
+        {
+          "commit": "ab4a118",
+          "timestamp": "2026-05-31T19:56:52.835Z",
+          "mi": 53.3,
+          "cognitive": 2,
+          "nesting": 1,
+          "lines": 59,
+          "maxCyclomatic": 2,
+          "entropy": 4.64
+        }
+      ],
+      "trend": "stable"
+    }
+  },
+  "capturedAt": "2026-05-31T19:56:57.836Z"
+}

@@ -25,7 +25,7 @@ src/exercise/
 │   └── flagKeys.ts           ← Step 1: flag name constants
 ├── provider/
 │   └── createFlagsProvider.ts ← Step 2: InMemoryProvider config
-├── evaluationContext.ts       ← Step 5: user/role context (Level 3)
+├── evaluationContext.tsx      ← Step 5: user/role context (Level 3)
 └── components/
     ├── FlagDashboard.tsx      ← dev tool (read-only, learn from it)
     ├── NewsFeed.tsx           ← Step 3: string variant flag
@@ -213,13 +213,13 @@ Everyone gets half-price. That's why `'default'` (standard pricing) is the safes
 ## Step 5 — Add evaluation context (Level 3)
 
 📄 **Files**:
-- `src/exercise/evaluationContext.ts`
+- `src/exercise/evaluationContext.tsx`
 - `src/exercise/provider/createFlagsProvider.ts`
 - `src/main.tsx`
 
-### 5a — Uncomment evaluationContext.ts
+### 5a — Uncomment the OpenFeature.setContext line
 
-The file has a commented-out `AppContextProvider` and `useAppContext`. Uncomment it all.
+In `evaluationContext.tsx`, uncomment the `OpenFeature.setContext(...)` line inside `updateContext`.
 
 ### 5b — Add contextEvaluator to enableBetaSearch
 
@@ -241,7 +241,7 @@ enableBetaSearch: {
 In `main.tsx`:
 
 ```tsx
-import { AppContextProvider } from './exercise/evaluationContext'
+import { AppContextProvider } from './exercise/evaluationContext.tsx'
 
 // Wrap the tree:
 <AppContextProvider>

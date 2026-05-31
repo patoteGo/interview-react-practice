@@ -7,14 +7,16 @@
       "file": "vite.config.d.ts"
     },
     {
-      "type": "file",
-      "name": "src/exercise/evaluationContext.ts",
-      "file": "src/exercise/evaluationContext.ts"
+      "type": "export",
+      "name": "flagConfig",
+      "file": "src/exercise/provider/createFlagsProvider.ts",
+      "line": 75
     },
     {
-      "type": "file",
-      "name": "src/exercise/provider/createFlagsProvider.ts",
-      "file": "src/exercise/provider/createFlagsProvider.ts"
+      "type": "export",
+      "name": "useAppContext",
+      "file": "src/exercise/evaluationContext.tsx",
+      "line": 72
     },
     {
       "type": "export",
@@ -24,6 +26,18 @@
     }
   ],
   "unusedExports": [
+    {
+      "type": "export",
+      "name": "flagConfig",
+      "file": "src/exercise/provider/createFlagsProvider.ts",
+      "line": 75
+    },
+    {
+      "type": "export",
+      "name": "useAppContext",
+      "file": "src/exercise/evaluationContext.tsx",
+      "line": 72
+    },
     {
       "type": "export",
       "name": "ALL_FLAG_KEYS",
@@ -36,16 +50,6 @@
       "type": "file",
       "name": "vite.config.d.ts",
       "file": "vite.config.d.ts"
-    },
-    {
-      "type": "file",
-      "name": "src/exercise/evaluationContext.ts",
-      "file": "src/exercise/evaluationContext.ts"
-    },
-    {
-      "type": "file",
-      "name": "src/exercise/provider/createFlagsProvider.ts",
-      "file": "src/exercise/provider/createFlagsProvider.ts"
     }
   ],
   "unusedDeps": [],

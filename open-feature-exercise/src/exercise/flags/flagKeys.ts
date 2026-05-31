@@ -16,8 +16,8 @@
  * TODO: Uncomment the flags below as you build each feature.
  */
 export const BooleanFlags = {
-	// showPoints: 'showPoints',         // Show loyalty points column in the feed
-	// enableBetaSearch: 'enableBetaSearch', // Show experimental search bar (admin only)
+	showPoints: 'showPoints',         // Show loyalty points column in the feed
+	enableBetaSearch: 'enableBetaSearch', // Show experimental search bar (admin only)
 } as const;
 
 /**
@@ -26,8 +26,8 @@ export const BooleanFlags = {
  * TODO: Uncomment when you reach Level 2.
  */
 export const StringFlags = {
-	// useNewCheckout: 'useNewCheckout', // 'list' | 'card' — controls NewsFeed layout
-	// pricingVariant: 'pricingVariant', // 'default' | 'discount' | 'premium'
+	useNewCheckout: 'useNewCheckout', // 'list' | 'card' — controls NewsFeed layout
+	pricingVariant: 'pricingVariant', // 'default' | 'discount' | 'premium'
 } as const;
 
 /**
@@ -36,6 +36,6 @@ export const StringFlags = {
  * TODO: Add your keys here as you uncomment them above.
  */
 export const ALL_FLAG_KEYS: readonly string[] = [
-	// ...Object.values(BooleanFlags),
-	// ...Object.values(StringFlags),
+	...Object.values(BooleanFlags),
+	...Object.values(StringFlags),
 ];

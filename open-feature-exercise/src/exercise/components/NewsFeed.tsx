@@ -12,22 +12,22 @@
 // ─────────────────────────────────────────────────────────────
 
 // TODO: Import the hook you need
-// import { useStringFlagValue } from '@openfeature/react-sdk';
-// import { StringFlags } from '../flags/flagKeys';
+import { useStringFlagValue } from '@openfeature/react-sdk';
+import { StringFlags } from '../flags/flagKeys';
 
 // Fake data — pretend this came from an API
 const posts = [
-	{ id: 1, title: "OpenFeature 1.0 released", points: 142, author: "alice" },
+	{ id: 1, title: "OpenFeature 1.0 released22", points: 142, author: "alice" },
 	{ id: 2, title: "Feature flags best practices", points: 89, author: "bob" },
 	{ id: 3, title: "Progressive delivery guide", points: 56, author: "carol" },
 ];
 
 export function NewsFeed() {
 	// TODO: Read the flag value
-	// const layout = useStringFlagValue(StringFlags.useNewCheckout, 'list');
+	const layout = useStringFlagValue(StringFlags.useNewCheckout, 'list');
 
 	// FOR NOW: hardcoded so you can see the component
-	const layout = "list"; // <-- delete this line and use the flag
+	// const layout = "list"; // <-- delete this line and use the flag
 
 	return (
 		<section className="card">
@@ -54,8 +54,8 @@ export function NewsFeed() {
 				))}
 			</ul>
 
-			{/*
-        TODO: Build the card layout and conditionally render it:
+			
+        {/* TODO: Build the card layout and conditionally render it: */}
         
         {layout === 'card' ? (
           <div className="card-grid">
@@ -73,7 +73,7 @@ export function NewsFeed() {
             ))}
           </ul>
         )}
-      */}
+     
 		</section>
 	);
 }
