@@ -25,7 +25,57 @@
         }
       ],
       "trend": "stable"
+    },
+    "cypress.config.js": {
+      "latest": {
+        "commit": "b396238",
+        "timestamp": "2026-05-31T15:38:31.264Z",
+        "mi": 79.7,
+        "cognitive": 0,
+        "nesting": 0,
+        "lines": 8,
+        "maxCyclomatic": 1,
+        "entropy": 3.85
+      },
+      "history": [
+        {
+          "commit": "b396238",
+          "timestamp": "2026-05-31T15:38:31.264Z",
+          "mi": 79.7,
+          "cognitive": 0,
+          "nesting": 0,
+          "lines": 8,
+          "maxCyclomatic": 1,
+          "entropy": 3.85
+        }
+      ],
+      "trend": "stable"
+    },
+    "cypress.config.ts": {
+      "latest": {
+        "commit": "b396238",
+        "timestamp": "2026-05-31T15:38:31.287Z",
+        "mi": 79.7,
+        "cognitive": 0,
+        "nesting": 0,
+        "lines": 8,
+        "maxCyclomatic": 1,
+        "entropy": 3.85
+      },
+      "history": [
+        {
+          "commit": "b396238",
+          "timestamp": "2026-05-31T15:38:31.287Z",
+          "mi": 79.7,
+          "cognitive": 0,
+          "nesting": 0,
+          "lines": 8,
+          "maxCyclomatic": 1,
+          "entropy": 3.85
+        }
+      ],
+      "trend": "stable"
     }
   },
-  "capturedAt": "2026-05-31T13:22:25.344Z"
+  "capturedAt": "2026-05-31T15:38:36.288Z"
 }
