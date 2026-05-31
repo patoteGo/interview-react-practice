@@ -23,7 +23,7 @@
  * └──────────────────────────────────────────────────────────────┘
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SSE_URL = "http://localhost:3001/api/stocks";
 
@@ -45,6 +45,22 @@ export default function StockTickerExercise() {
 	//      setPrices(prev => ({ ...prev, [data.symbol]: data }))
 	//   4. Track connection status
 	//   5. Cleanup
+
+	useEffect(() => {
+		const source = new EventSource(SSE_URL);
+		source.onopen = () => setConnected(true);
+		source.onerror = () => setConnected(false);
+		const handlePrice = (e: MessageEvent) => {
+			const data = JSON.parse(e.data);
+			setPrices((prev) => ({ ...prev, [data.symbol]: data }));
+		}
+		source.addEventListener("price", handlePrice);
+
+		return () => {
+			source.removeEventListener("price", handlePrice);
+			source.close();
+		}
+	}, []);
 
 	const priceList = Object.values(prices).sort((a, b) =>
 		a.symbol.localeCompare(b.symbol),

@@ -24,7 +24,7 @@
  * └──────────────────────────────────────────────────────────────┘
  */
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const SSE_URL = "http://localhost:3001/api/chat";
 
@@ -40,12 +40,48 @@ export default function ChatExercise() {
 	const [typingUser, setTypingUser] = useState<string | null>(null);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 
+
+	useEffect(() => {
+		const source = new EventSource(SSE_URL);
+		// source.onmessage = (event) => {
+		// 	const data = JSON.parse(event.data);
+		// 	setMessages((prev) => [...prev, data]);
+		// 	setTypingUser(null);
+		// }
+		const handleMessage = (e: MessageEvent) => {
+			const data = JSON.parse(e.data);
+			setMessages((prev) => [...prev, {...data, timestamp: data.ts }]);
+			setTypingUser(null);
+		}
+
+		const handleTyping = (e: MessageEvent) => {
+			const data = JSON.parse(e.data);
+			setTypingUser(data.user);
+		}
+
+		source.addEventListener("message", handleMessage);
+		source.addEventListener("typing", handleTyping);
+
+		return () => {
+			source.removeEventListener("message", handleMessage);
+			source.removeEventListener("typing", handleTyping);
+			source.close();
+		}
+	}, []);
+
+	useEffect(() => {
+		if (messagesEndRef.current) {
+			messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}, [messages]);
+
 	// TODO: Create a useEffect that:
 	//   1. Creates an EventSource connected to SSE_URL
 	//   2. On "message" event: append to messages, clear typingUser
 	//   3. On "typing" event: set typingUser
 	//   4. Auto-scroll to bottom on new messages (use a separate useEffect)
 	//   5. Cleanup: close EventSource
+
 
 	return (
 		<section>

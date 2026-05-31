@@ -25,7 +25,7 @@
  * └──────────────────────────────────────────────────────────────┘
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SSE_URL = "http://localhost:3001/api/flaky";
 
@@ -52,6 +52,31 @@ export default function FlakyConnectionExercise() {
 	//        - If readyState === CLOSED → status "disconnected"
 	//   5. Cleanup: close EventSource
 
+	useEffect(() => {
+		const source = new EventSource(SSE_URL);
+		source.onopen = () => {
+			setReconnectCount((prev) => prev + 1);
+			setStatus("connected");
+		};
+		source.onerror = () => {
+			if (source.readyState === EventSource.CONNECTING) {
+				setStatus("connecting");
+			} else if (source.readyState === EventSource.CLOSED) {
+				setStatus("disconnected");
+			}
+		};
+
+		const handleStatus = (e: MessageEvent) => {
+			const data = JSON.parse(e.data);
+			setHistory((prev) => [...prev, { ...data, receivedAt: Date.now() }]);
+		}
+		source.addEventListener("status", handleStatus);
+
+		return () => {
+			source.removeEventListener("status", handleStatus);
+			source.close();
+		}
+	}, []);
 	return (
 		<section>
 			<h2>Exercise 5: Flaky Connection</h2>

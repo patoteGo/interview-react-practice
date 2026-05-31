@@ -24,7 +24,7 @@
  * └──────────────────────────────────────────────────────────────┘
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SSE_URL = "http://localhost:3001/api/named-events";
 
@@ -46,6 +46,34 @@ export default function NamedEventsExercise() {
 	const [ticks, setTicks] = useState<number>(0);
 	const [statuses, setStatuses] = useState<StatusData[]>([]);
 	const [alerts, setAlerts] = useState<AlertData[]>([]);
+
+	useEffect(() => {
+		const source = new EventSource(SSE_URL);
+   const handleTick = (e: MessageEvent) => {                                      
+       const data: TickData = JSON.parse(e.data);                                   
+       setTicks(data.value);                                                        
+     };                                                                             
+     const handleStatus = (e: MessageEvent) => {                                    
+       const data: StatusData = JSON.parse(e.data);                                 
+       setStatuses((prev) => [...prev, data]);                                      
+     };                                                                             
+     const handleAlert = (e: MessageEvent) => {                                     
+       const data: AlertData = JSON.parse(e.data);                                  
+       setAlerts((prev) => [...prev, data]);                                        
+     };    
+
+		source.addEventListener("tick", handleTick);
+		source.addEventListener("status", handleStatus);
+		source.addEventListener("alert", handleAlert);	
+
+
+		return () => {
+			source.removeEventListener("tick", handleTick);
+			source.removeEventListener("status", handleStatus);
+			source.removeEventListener("alert", handleAlert);
+			source.close();
+		};
+	}, []);
 
 	// TODO: Create a useEffect that:
 	//   1. Creates an EventSource connected to SSE_URL
