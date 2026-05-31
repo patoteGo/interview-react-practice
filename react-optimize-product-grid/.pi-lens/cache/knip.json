@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "dist/assets/index-zMu5X28f.js",
+      "file": "dist/assets/index-zMu5X28f.js"
+    }
+  ],
+  "unusedExports": [],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "dist/assets/index-zMu5X28f.js",
+      "file": "dist/assets/index-zMu5X28f.js"
+    }
+  ],
+  "unusedDeps": [],
+  "unlistedDeps": [],
+  "summary": "Found 1 issues"
+}

@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "dist/assets/index-BM7EesTw.js",
+      "file": "dist/assets/index-BM7EesTw.js"
+    }
+  ],
+  "unusedExports": [],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "dist/assets/index-BM7EesTw.js",
+      "file": "dist/assets/index-BM7EesTw.js"
+    }
+  ],
+  "unusedDeps": [],
+  "unlistedDeps": [],
+  "summary": "Found 1 issues"
+}

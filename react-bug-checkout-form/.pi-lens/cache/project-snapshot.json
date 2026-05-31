@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "projectRoot": "/Users/patote/learn/interview/interview-react-practice/react-bug-checkout-form",
+  "generatedAt": "2026-05-31T00:21:34.319Z",
+  "seq": 0,
+  "files": {},
+  "symbols": {},
+  "reverseDeps": {},
+  "cachedExports": [],
+  "projectRulesScan": {
+    "rules": [],
+    "hasCustomRules": false
+  },
+  "startupScan": {
+    "cwd": "/Users/patote/learn/interview/interview-react-practice/react-bug-checkout-form",
+    "scanRoot": "/Users/patote/learn/interview/interview-react-practice/react-bug-checkout-form",
+    "projectRoot": "/Users/patote/learn/interview/interview-react-practice/react-bug-checkout-form",
+    "canWarmCaches": true,
+    "sourceFileCount": 3
+  },
+  "languageProfile": {
+    "present": {
+      "jsts": true,
+      "python": false,
+      "go": false,
+      "rust": false,
+      "cxx": false,
+      "cmake": false,
+      "fish": false,
+      "shell": false,
+      "json": false,
+      "markdown": false,
+      "css": false,
+      "yaml": false,
+      "sql": false,
+      "ruby": false,
+      "html": false,
+      "docker": false,
+      "php": false,
+      "powershell": false,
+      "prisma": false,
+      "csharp": false,
+      "fsharp": false,
+      "java": false,
+      "kotlin": false,
+      "swift": false,
+      "dart": false,
+      "lua": false,
+      "zig": false,
+      "haskell": false,
+      "elixir": false,
+      "gleam": false,
+      "ocaml": false,
+      "clojure": false,
+      "terraform": false,
+      "nix": false,
+      "toml": false
+    },
+    "configured": {
+      "jsts": true
+    },
+    "counts": {
+      "jsts": 3
+    },
+    "detectedKinds": [
+      "jsts"
+    ]
+  }
+}

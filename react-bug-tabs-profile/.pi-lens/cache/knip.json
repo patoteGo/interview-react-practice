@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "dist/assets/index-CWhj60yk.js",
+      "file": "dist/assets/index-CWhj60yk.js"
+    }
+  ],
+  "unusedExports": [],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "dist/assets/index-CWhj60yk.js",
+      "file": "dist/assets/index-CWhj60yk.js"
+    }
+  ],
+  "unusedDeps": [],
+  "unlistedDeps": [],
+  "summary": "Found 1 issues"
+}
