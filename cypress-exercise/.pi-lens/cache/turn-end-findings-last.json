@@ -1,0 +1,6 @@
+{
+  "signature": "src/exercise/components/TodoForm.tsx|src/exercise/components/TodoItem.tsx|src/exercise/components/TodoList.tsx::ℹ️ Advisory — no action required this turn:\nCode-quality warnings introduced/touched this turn: 1 across 1 file(s).\nTop rules: typescript:6385×1\nDetails written to .pi-lens/cache/code-quality-warnings.json\nNo action required unless you are already refactoring these areas.",
+  "sessionId": "lens-mptt0tdc-7a2a0ad7",
+  "projectSeqStart": 3,
+  "projectSeqEnd": 8
+}

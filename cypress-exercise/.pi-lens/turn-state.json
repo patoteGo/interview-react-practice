@@ -1,0 +1,87 @@
+{
+  "files": {
+    "server/index.mjs": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 69
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T14:43:09.255Z"
+    },
+    "src/exercise/api/todosApi.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 39
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T14:43:09.325Z"
+    },
+    "src/exercise/state/useTodos.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 47
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T14:43:09.328Z"
+    },
+    "src/exercise/components/TodoForm.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 44
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T14:43:09.330Z"
+    },
+    "src/exercise/components/TodoItem.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 31
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T14:43:09.331Z"
+    },
+    "src/exercise/components/TodoList.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 46
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T14:43:09.333Z"
+    },
+    "src/App.tsx": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 28
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-31T14:43:09.334Z"
+    },
+    "src/styles.css": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 176
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-31T14:43:09.335Z"
+    }
+  },
+  "turnCycles": 0,
+  "maxCycles": 3,
+  "lastUpdated": "2026-05-31T14:43:09.335Z"
+}

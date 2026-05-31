@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "cypress.config.d.ts",
+      "file": "cypress.config.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    },
+    {
+      "type": "export",
+      "name": "resetTodos",
+      "file": "src/exercise/api/todosApi.ts",
+      "line": 36
+    }
+  ],
+  "unusedExports": [
+    {
+      "type": "export",
+      "name": "resetTodos",
+      "file": "src/exercise/api/todosApi.ts",
+      "line": 36
+    }
+  ],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "cypress.config.d.ts",
+      "file": "cypress.config.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "vite.config.d.ts",
+      "file": "vite.config.d.ts"
+    }
+  ],
+  "unusedDeps": [],
+  "unlistedDeps": [],
+  "summary": "Found 3 issues"
+}
