@@ -68,6 +68,12 @@
     },
     {
       "type": "export",
+      "name": "ChatMessageReceived",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 74
+    },
+    {
+      "type": "export",
       "name": "UserTypingMessage",
       "file": "src/exercise/protocol/types.ts",
       "line": 84
@@ -136,6 +142,12 @@
     },
     {
       "type": "export",
+      "name": "ChatMessageReceived",
+      "file": "src/exercise/protocol/types.ts",
+      "line": 74
+    },
+    {
+      "type": "export",
       "name": "UserTypingMessage",
       "file": "src/exercise/protocol/types.ts",
       "line": 84
@@ -150,5 +162,5 @@
   ],
   "unusedDeps": [],
   "unlistedDeps": [],
-  "summary": "Found 12 issues"
+  "summary": "Found 13 issues"
 }

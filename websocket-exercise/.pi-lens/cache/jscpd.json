@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "clones": [
+    {
+      "fileA": "src/styles.css",
+      "startA": 392,
+      "fileB": "src/styles.css",
+      "startB": 154,
+      "lines": 12,
+      "tokens": 0
+    }
+  ],
+  "duplicatedLines": 11,
+  "totalLines": 1757,
+  "percentage": 0.63
+}

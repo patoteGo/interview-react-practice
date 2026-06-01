@@ -1,193 +1,169 @@
-// =============================================================================
-// 🔌 useWebSocket — React hook for WebSocket lifecycle
-// =============================================================================
+// useWebSocket — manages a single WebSocket connection with auto-reconnect.
 //
-// WHAT THIS DOES:
-//   1. Creates a WebSocket connection
-//   2. Tracks connection status (connecting → connected → disconnected)
-//   3. Calls your `onMessage` callback for every incoming message
-//   4. Provides a `send` function to emit messages to the server
-//   5. Auto-reconnects with exponential backoff when connection drops
-//   6. Cleans up (closes socket) when the component unmounts
+// Lifecycle: connect → open → message* → close → (reconnect)
 //
-// WHY A HOOK?
-//   React components re-render often. You don't want to create a new
-//   WebSocket every render. useEffect + useRef keeps ONE socket alive
-//   across renders.
-//
-// KEY CONCEPTS:
-//   - useEffect: setup on mount, cleanup on unmount
-//   - useRef: holds mutable data (the socket) without causing re-renders
-//   - useCallback: memoizes functions so child components don't re-render
-//   - Exponential backoff: wait 1s, 2s, 4s, 8s... before retrying
-//
-// 📖 READ THE CODE LINE BY LINE. Every section has comments.
-// =============================================================================
+// Key design decisions:
+//   - Uses a generation counter so stale event handlers from old sockets
+//     (e.g. React StrictMode double-mount) are silently ignored.
+//   - Exponential backoff on reconnect: 1s, 2s, 4s... up to 30s, max 20 attempts.
+//   - Options (onMessage, onOpen, onClose) are read from a ref so they're
+//     always fresh without causing reconnects.
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import type { ConnectionStatus, ServerMessage } from "../protocol/types";
 
-// ── Configuration ─────────────────────────────────────────────────────────
 const WS_URL = "ws://localhost:4003";
-const RECONNECT_BASE_MS = 1000; // start at 1s
-const RECONNECT_MAX_MS = 30000; // cap at 30s
+const RECONNECT_BASE_MS = 1000;
+const RECONNECT_MAX_MS = 30_000;
 const MAX_RECONNECT_ATTEMPTS = 20;
 
-interface UseWebSocketOptions {
-	/** Called for every parsed server message */
+export interface UseWebSocketOptions {
 	onMessage: (msg: ServerMessage) => void;
-	/** Called when connection is established */
 	onOpen?: () => void;
-	/** Called when connection drops */
 	onClose?: () => void;
-	/** Auto-reconnect on disconnect? default: true */
 	autoReconnect?: boolean;
 }
 
-interface UseWebSocketReturn {
-	/** Current connection status */
+export interface UseWebSocketReturn {
 	status: ConnectionStatus;
-	/** Send a JSON message to the server */
 	send: (data: unknown) => void;
-	/** Manually open the connection */
 	connect: () => void;
-	/** Manually close the connection */
 	disconnect: () => void;
-	/** How many reconnect attempts have been made */
 	reconnectAttempt: number;
 }
 
-export function useWebSocket(options: UseWebSocketOptions): UseWebSocketReturn {
-	const { onMessage, onOpen, onClose, autoReconnect = true } = options;
-
-	// ── State that triggers re-renders ──────────────────────────────────────
+export function useWebSocket({
+	onMessage,
+	onOpen,
+	onClose,
+	autoReconnect = true,
+}: UseWebSocketOptions): UseWebSocketReturn {
 	const [status, setStatus] = useState<ConnectionStatus>("idle");
 	const [reconnectAttempt, setReconnectAttempt] = useState(0);
 
-	// ── Refs: mutable values that survive re-renders ────────────────────────
-	// We store the socket and options in refs so the event handlers always
-	// see the latest values without being recreated.
 	const socketRef = useRef<WebSocket | null>(null);
-	const optionsRef = useRef(options);
-	optionsRef.current = options;
-
-	const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
-		null,
+	const generationRef = useRef(0);
+	const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+		undefined,
 	);
-	const intentionalCloseRef = useRef(false); // did WE close it?
 
-	// ── Cleanup helper ──────────────────────────────────────────────────────
-	const clearReconnect = useCallback(() => {
-		if (reconnectTimeoutRef.current) {
-			clearTimeout(reconnectTimeoutRef.current);
-			reconnectTimeoutRef.current = null;
-		}
+	// Store callbacks in refs so the socket event handlers always see the
+	// latest versions without us needing to tear down and rebuild listeners.
+	const onMessageRef = useRef(onMessage);
+	const onOpenRef = useRef(onOpen);
+	const onCloseRef = useRef(onClose);
+	onMessageRef.current = onMessage;
+	onOpenRef.current = onOpen;
+	onCloseRef.current = onClose;
+
+	// ── Tear down the current socket (if any) without triggering reconnect ──
+	const teardown = useCallback((intentional: boolean) => {
+		const socket = socketRef.current;
+		if (!socket) return;
+
+		// Bump generation so any in-flight close handlers from this socket
+		// are recognized as stale and don't trigger reconnect.
+		if (intentional) generationRef.current++;
+
+		socket.onopen = null;
+		socket.onclose = null;
+		socket.onmessage = null;
+		socket.onerror = null;
+		socket.close();
+		socketRef.current = null;
 	}, []);
 
-	// ── Connect function ────────────────────────────────────────────────────
-	// This is the core: creates the WebSocket, attaches event handlers.
+	// ── Schedule a reconnect attempt ────────────────────────────────────────
+	const scheduleReconnect = useCallback((connectFn: () => void) => {
+		clearTimeout(reconnectTimerRef.current);
+
+		setReconnectAttempt((prev) => {
+			const next = prev + 1;
+			if (next > MAX_RECONNECT_ATTEMPTS) return prev;
+
+			const delay = Math.min(RECONNECT_BASE_MS * 2 ** prev, RECONNECT_MAX_MS);
+
+			reconnectTimerRef.current = setTimeout(() => {
+				setStatus("reconnecting");
+				connectFn();
+			}, delay);
+
+			return next;
+		});
+	}, []);
+
+	// ── Open a new connection ───────────────────────────────────────────────
 	const connect = useCallback(() => {
-		// Don't create a new socket if one is already open/connecting
+		const current = socketRef.current;
 		if (
-			socketRef.current?.readyState === WebSocket.OPEN ||
-			socketRef.current?.readyState === WebSocket.CONNECTING
+			current?.readyState === WebSocket.OPEN ||
+			current?.readyState === WebSocket.CONNECTING
 		) {
 			return;
 		}
 
-		clearReconnect();
-		intentionalCloseRef.current = false;
-		setStatus("connecting");
+		// Tear down any stale socket first.
+		teardown(false);
+		clearTimeout(reconnectTimerRef.current);
 
-		// ── STEP 1: Create the WebSocket ────────────────────────────────────
+		const generation = ++generationRef.current;
 		const socket = new WebSocket(WS_URL);
 		socketRef.current = socket;
+		setStatus("connecting");
 
-		// ── STEP 2: Handle open ─────────────────────────────────────────────
-		socket.addEventListener("open", () => {
+		socket.onopen = () => {
+			if (generation !== generationRef.current) return;
 			setStatus("connected");
-			setReconnectAttempt(0); // reset on successful connect
-			optionsRef.current.onOpen?.();
-		});
+			setReconnectAttempt(0);
+			onOpenRef.current?.();
+		};
 
-		// ── STEP 3: Handle incoming messages ────────────────────────────────
-		// This is where server data flows into your React state.
-		socket.addEventListener("message", (event: MessageEvent) => {
+		socket.onmessage = (event) => {
+			if (generation !== generationRef.current) return;
 			try {
-				// WebSocket data is always a string. Parse it.
-				const parsed = JSON.parse(event.data) as ServerMessage;
-				optionsRef.current.onMessage(parsed);
+				onMessageRef.current(JSON.parse(event.data));
 			} catch {
-				// Guard: skip malformed messages
-				console.warn("[WebSocket] Failed to parse message:", event.data);
+				console.warn("[ws] malformed message:", event.data);
 			}
-		});
+		};
 
-		// ── STEP 4: Handle close ────────────────────────────────────────────
-		socket.addEventListener("close", () => {
+		socket.onclose = () => {
+			if (generation !== generationRef.current) return;
 			setStatus("disconnected");
-			optionsRef.current.onClose?.();
+			onCloseRef.current?.();
+			if (autoReconnect) scheduleReconnect(connect);
+		};
 
-			// ── Auto-reconnect with exponential backoff ───────────────────────
-			if (autoReconnect && !intentionalCloseRef.current) {
-				setReconnectAttempt((prev) => {
-					const next = prev + 1;
-					if (next > MAX_RECONNECT_ATTEMPTS) return prev;
+		socket.onerror = () => {
+			// The browser fires onclose right after onerror, so we handle
+			// status updates in onclose.
+		};
+	}, [autoReconnect, teardown, scheduleReconnect]);
 
-					// Exponential backoff: 1s, 2s, 4s, 8s, 16s, 30s, 30s...
-					const delay = Math.min(
-						RECONNECT_BASE_MS * 2 ** prev,
-						RECONNECT_MAX_MS,
-					);
-
-					reconnectTimeoutRef.current = setTimeout(() => {
-						setStatus("reconnecting");
-						connect(); // recursive reconnect!
-					}, delay);
-
-					return next;
-				});
-			}
-		});
-
-		// ── STEP 5: Handle errors ───────────────────────────────────────────
-		socket.addEventListener("error", (event) => {
-			console.error("[WebSocket] error:", event);
-			// Note: WebSocket fires "close" right after "error", so we don't
-			// need to set status here — the close handler does it.
-		});
-	}, [autoReconnect, clearReconnect]);
-
-	// ── Disconnect function ─────────────────────────────────────────────────
+	// ── Intentional disconnect ──────────────────────────────────────────────
 	const disconnect = useCallback(() => {
-		intentionalCloseRef.current = true;
-		clearReconnect();
-		socketRef.current?.close();
-		socketRef.current = null;
+		clearTimeout(reconnectTimerRef.current);
+		teardown(true);
 		setStatus("idle");
 		setReconnectAttempt(0);
-	}, [clearReconnect]);
+	}, [teardown]);
 
-	// ── Send function ───────────────────────────────────────────────────────
-	// Wraps JSON.stringify so callers can just pass objects.
+	// ── Send JSON to the server ─────────────────────────────────────────────
 	const send = useCallback((data: unknown) => {
 		const socket = socketRef.current;
-		if (!socket || socket.readyState !== WebSocket.OPEN) {
-			console.warn("[WebSocket] Cannot send — socket not open");
+		if (socket?.readyState !== WebSocket.OPEN) {
+			console.warn("[ws] not open, dropping message");
 			return;
 		}
 		socket.send(JSON.stringify(data));
 	}, []);
 
-	// ── useEffect: connect on mount, disconnect on unmount ──────────────────
-	// This is the React lifecycle integration.
-	// Empty deps [] = run once on mount. Return function = cleanup on unmount.
+	// ── Auto-connect on mount, clean up on unmount ──────────────────────────
 	useEffect(() => {
 		connect();
 		return () => {
-			intentionalCloseRef.current = true;
-			clearReconnect();
-			socketRef.current?.close();
+			clearTimeout(reconnectTimerRef.current);
+			teardown(true);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

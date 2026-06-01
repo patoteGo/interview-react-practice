@@ -1,46 +1,29 @@
-// =============================================================================
-// 💬 useChat — Chat state management hook
-// =============================================================================
+// useChat — application layer on top of useWebSocket.
 //
-// WHAT THIS DOES:
-//   - Combines useWebSocket (transport) with chat-specific state
-//   - Manages: messages list, online users, current user, typing indicators
-//   - Provides actions: join, sendMessage, startTyping
-//   - Handles ALL server message types and updates state accordingly
+// Maps raw server messages to chat state (messages, users, typing).
+// Provides actions: join, sendMessage, disconnect, reconnect.
 //
-// ARCHITECTURE NOTE:
-//   This hook is the "brain" of the chat app.
-//   - useWebSocket handles the connection (transport layer)
-//   - useChat handles the meaning of messages (application layer)
-//   - Components just render whatever state this hook provides
-//
-//   Separating transport from application logic is important.
-//   If you switched from WebSocket to SSE or polling, only useWebSocket
-//   would change. useChat stays the same.
-// =============================================================================
+// Architecture:
+//   useWebSocket = transport (how bytes move)
+//   useChat      = application (what bytes mean)
+//   Components   = presentation (what state looks like)
 
 import { useCallback, useRef, useState } from "react";
 import { useWebSocket } from "../client/useWebSocket";
-import type {
-	ConnectionStatus,
-	ServerMessage,
-	ChatMessageReceived,
-} from "../protocol/types";
+import type { ConnectionStatus, ServerMessage } from "../protocol/types";
 
-// ── Types for our chat state ──────────────────────────────────────────────
+// ── Public types ──────────────────────────────────────────────────────────
 
 export interface DisplayMessage {
 	id: string;
 	username: string;
 	text: string;
 	timestamp: string;
-	/** Is this from the current user? */
 	isOwn: boolean;
-	/** Is this a system notification (join/leave)? */
 	isSystem: boolean;
 }
 
-interface ChatState {
+export type UseChatReturn = {
 	username: string | null;
 	hasJoined: boolean;
 	messages: DisplayMessage[];
@@ -48,19 +31,16 @@ interface ChatState {
 	typingUsers: Set<string>;
 	status: ConnectionStatus;
 	reconnectAttempt: number;
-}
-
-interface ChatActions {
-	join: (username: string) => void;
+	join: (name: string) => void;
 	sendMessage: (text: string) => void;
+	startTyping: () => void;
 	disconnect: () => void;
 	reconnect: () => void;
-}
+};
 
-export type UseChatReturn = ChatState & ChatActions;
+// ── Helpers ───────────────────────────────────────────────────────────────
 
-// ── Helper: create a system message (join/leave notifications) ────────────
-function systemMessage(text: string): DisplayMessage {
+function sysMsg(text: string): DisplayMessage {
 	return {
 		id: crypto.randomUUID(),
 		username: "system",
@@ -71,122 +51,106 @@ function systemMessage(text: string): DisplayMessage {
 	};
 }
 
+const TYPING_TIMEOUT_MS = 2000;
+
+// ── Hook ──────────────────────────────────────────────────────────────────
+
 export function useChat(): UseChatReturn {
-	// ── Chat state ──────────────────────────────────────────────────────────
 	const [username, setUsername] = useState<string | null>(null);
 	const [hasJoined, setHasJoined] = useState(false);
 	const [messages, setMessages] = useState<DisplayMessage[]>([]);
 	const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
 	const [typingUsers, setTypingUsers] = useState<Set<string>>(new Set());
 
-	// Ref for typing timeout (so we can clear it)
-	const typingTimeoutRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(
+	// Per-user typing timeout
+	const typingTimers = useRef<Map<string, ReturnType<typeof setTimeout>>>(
 		new Map(),
 	);
 
-	// ── Process incoming server messages ────────────────────────────────────
-	// This is the heart of the hook: map server events → UI state updates.
-	const handleMessage = useCallback(
-		(msg: ServerMessage) => {
-			switch (msg.type) {
-				// ── Server says we're connected (WebSocket open) ──────────────────
-				case "system.connected":
-					// Don't add to chat — this is a transport event, not a chat event
-					break;
+	// Read username from a ref inside closures so we don't need it as a dep
+	// that would recreate handleMessage (and thus reconnect the socket).
+	const usernameRef = useRef<string | null>(null);
+	const setUsernameOuter = useCallback((name: string | null) => {
+		usernameRef.current = name;
+		setUsername(name);
+	}, []);
 
-				// ── Heartbeat tick ────────────────────────────────────────────────
-				case "system.tick":
-					// Silent — we don't show these in the UI
-					break;
+	// ── Route incoming server messages to state updates ─────────────────────
 
-				// ── Error from server ────────────────────────────────────────────
-				case "system.error":
-					setMessages((prev) => [
-						...prev,
-						systemMessage(`⚠️ ${msg.payload.message}`),
+	const handleMessage = useCallback((msg: ServerMessage) => {
+		switch (msg.type) {
+			case "system.connected":
+			case "system.tick":
+				break;
+
+			case "system.error":
+				setMessages((p) => [...p, sysMsg(`⚠️ ${msg.payload.message}`)]);
+				break;
+
+			case "user.joined":
+				setOnlineUsers(msg.payload.users);
+				if (msg.payload.isYou) {
+					setHasJoined(true);
+				} else {
+					setMessages((p) => [
+						...p,
+						sysMsg(`👋 ${msg.payload.username} joined`),
 					]);
-					break;
-
-				// ── Someone joined (maybe us!) ───────────────────────────────────
-				case "user.joined": {
-					setOnlineUsers(msg.payload.users);
-					if (msg.payload.isYou) {
-						// We joined — don't show "you joined" to ourselves
-						setHasJoined(true);
-					} else {
-						setMessages((prev) => [
-							...prev,
-							systemMessage(`👋 ${msg.payload.username} joined the chat`),
-						]);
-					}
-					break;
 				}
+				break;
 
-				// ── Someone left ─────────────────────────────────────────────────
-				case "user.left": {
-					setOnlineUsers(msg.payload.users);
-					setMessages((prev) => [
-						...prev,
-						systemMessage(`👋 ${msg.payload.username} left the chat`),
-					]);
-					break;
-				}
+			case "user.left":
+				setOnlineUsers(msg.payload.users);
+				setMessages((p) => [...p, sysMsg(`👋 ${msg.payload.username} left`)]);
+				break;
 
-				// ── Chat message! The fun part ───────────────────────────────────
-				case "chat.message": {
-					const chat = msg as ChatMessageReceived;
-					setMessages((prev) => [
-						...prev,
-						{
-							id: chat.payload.id,
-							username: chat.payload.username,
-							text: chat.payload.text,
-							timestamp: chat.payload.timestamp,
-							isOwn: chat.payload.username === username,
-							isSystem: false,
-						},
-					]);
-					break;
-				}
+			case "chat.message":
+				setMessages((p) => [
+					...p,
+					{
+						id: msg.payload.id,
+						username: msg.payload.username,
+						text: msg.payload.text,
+						timestamp: msg.payload.timestamp,
+						isOwn: msg.payload.username === usernameRef.current,
+						isSystem: false,
+					},
+				]);
+				break;
 
-				// ── Someone is typing ────────────────────────────────────────────
-				case "user.typing": {
-					const typer = msg.payload.username;
-					// Clear existing timeout for this user
-					const existing = typingTimeoutRef.current.get(typer);
-					if (existing) clearTimeout(existing);
+			case "user.typing": {
+				const typer = msg.payload.username;
+				clearTimeout(typingTimers.current.get(typer));
 
-					// Add to typing set
-					setTypingUsers((prev) => {
-						const next = new Set(prev);
-						next.add(typer);
-						return next;
-					});
+				setTypingUsers((prev) => new Set(prev).add(typer));
 
-					// Remove after 2s of no typing updates
-					const timeout = setTimeout(() => {
+				typingTimers.current.set(
+					typer,
+					setTimeout(() => {
 						setTypingUsers((prev) => {
 							const next = new Set(prev);
 							next.delete(typer);
 							return next;
 						});
-						typingTimeoutRef.current.delete(typer);
-					}, 2000);
-					typingTimeoutRef.current.set(typer, timeout);
-					break;
-				}
+						typingTimers.current.delete(typer);
+					}, TYPING_TIMEOUT_MS),
+				);
+				break;
 			}
-		},
-		[username],
-	);
+		}
+	}, []);
 
-	// ── Connect to WebSocket server ─────────────────────────────────────────
+	// ── Transport ───────────────────────────────────────────────────────────
+
 	const { status, send, disconnect, connect, reconnectAttempt } = useWebSocket({
 		onMessage: handleMessage,
 		onOpen: () => {
-			// If we have a username, re-join automatically after reconnect
-			if (username) {
-				send({ type: "user.join", payload: { username } });
+			// Re-join automatically after reconnect
+			if (usernameRef.current) {
+				send({
+					type: "user.join",
+					payload: { username: usernameRef.current },
+				});
 			}
 		},
 	});
@@ -197,10 +161,10 @@ export function useChat(): UseChatReturn {
 		(name: string) => {
 			const trimmed = name.trim();
 			if (!trimmed) return;
-			setUsername(trimmed);
+			setUsernameOuter(trimmed);
 			send({ type: "user.join", payload: { username: trimmed } });
 		},
-		[send],
+		[send, setUsernameOuter],
 	);
 
 	const sendMessage = useCallback(
@@ -212,13 +176,12 @@ export function useChat(): UseChatReturn {
 		[send],
 	);
 
-	// Typing indicator — fire-and-forget
-	const _startTyping = useCallback(() => {
-		send({ type: "user.typing", payload: {} });
-	}, [send]);
+	const startTyping = useCallback(
+		() => send({ type: "user.typing", payload: {} }),
+		[send],
+	);
 
 	return {
-		// State
 		username,
 		hasJoined,
 		messages,
@@ -226,9 +189,9 @@ export function useChat(): UseChatReturn {
 		typingUsers,
 		status,
 		reconnectAttempt,
-		// Actions
 		join,
 		sendMessage,
+		startTyping,
 		disconnect,
 		reconnect: connect,
 	};

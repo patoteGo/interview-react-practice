@@ -46,6 +46,7 @@ export default function App() {
 		reconnectAttempt,
 		join,
 		sendMessage,
+		startTyping,
 	} = useChat();
 
 	return (
@@ -74,7 +75,12 @@ export default function App() {
 							typingUsers={typingUsers}
 							currentUsername={username}
 						/>
-						<Composer onSend={sendMessage} disabled={false} status={status} />
+						<Composer
+							onSend={sendMessage}
+							onTyping={startTyping}
+							disabled={false}
+							status={status}
+						/>
 					</main>
 				</div>
 			)}

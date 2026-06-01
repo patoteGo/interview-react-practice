@@ -3,14 +3,14 @@
   "files": {
     "server/index.mjs": {
       "latest": {
-        "commit": "9e2513c",
-        "timestamp": "2026-05-31T16:52:51.590Z",
-        "mi": 49.3,
-        "cognitive": 7,
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.469Z",
+        "mi": 42.1,
+        "cognitive": 42,
         "nesting": 4,
-        "lines": 33,
-        "maxCyclomatic": 2,
-        "entropy": 5.01
+        "lines": 122,
+        "maxCyclomatic": 14,
+        "entropy": 5.47
       },
       "history": [
         {
@@ -22,20 +22,30 @@
           "lines": 33,
           "maxCyclomatic": 2,
           "entropy": 5.01
+        },
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.469Z",
+          "mi": 42.1,
+          "cognitive": 42,
+          "nesting": 4,
+          "lines": 122,
+          "maxCyclomatic": 14,
+          "entropy": 5.47
         }
       ],
-      "trend": "stable"
+      "trend": "regressing"
     },
     "src/App.tsx": {
       "latest": {
-        "commit": "9e2513c",
-        "timestamp": "2026-05-31T16:57:10.739Z",
-        "mi": 46.3,
-        "cognitive": 0,
-        "nesting": 2,
-        "lines": 42,
-        "maxCyclomatic": 1,
-        "entropy": 5.56
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.441Z",
+        "mi": 52.8,
+        "cognitive": 2,
+        "nesting": 1,
+        "lines": 55,
+        "maxCyclomatic": 2,
+        "entropy": 5.42
       },
       "history": [
         {
@@ -47,10 +57,245 @@
           "lines": 42,
           "maxCyclomatic": 1,
           "entropy": 5.56
+        },
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.441Z",
+          "mi": 52.8,
+          "cognitive": 2,
+          "nesting": 1,
+          "lines": 55,
+          "maxCyclomatic": 2,
+          "entropy": 5.42
+        }
+      ],
+      "trend": "improving"
+    },
+    "src/exercise/protocol/types.ts": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.282Z",
+        "mi": 51.8,
+        "cognitive": 0,
+        "nesting": 0,
+        "lines": 67,
+        "maxCyclomatic": 1,
+        "entropy": 4.17
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.282Z",
+          "mi": 51.8,
+          "cognitive": 0,
+          "nesting": 0,
+          "lines": 67,
+          "maxCyclomatic": 1,
+          "entropy": 4.17
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/client/useWebSocket.ts": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.313Z",
+        "mi": 42.1,
+        "cognitive": 27,
+        "nesting": 6,
+        "lines": 110,
+        "maxCyclomatic": 26,
+        "entropy": 5.21
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.313Z",
+          "mi": 42.1,
+          "cognitive": 27,
+          "nesting": 6,
+          "lines": 110,
+          "maxCyclomatic": 26,
+          "entropy": 5.21
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/state/useChat.ts": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.347Z",
+        "mi": 38.7,
+        "cognitive": 48,
+        "nesting": 5,
+        "lines": 164,
+        "maxCyclomatic": 13,
+        "entropy": 6.15
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.347Z",
+          "mi": 38.7,
+          "cognitive": 48,
+          "nesting": 5,
+          "lines": 164,
+          "maxCyclomatic": 13,
+          "entropy": 6.15
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/components/ConnectionBadge.tsx": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.372Z",
+        "mi": 59.4,
+        "cognitive": 2,
+        "nesting": 1,
+        "lines": 28,
+        "maxCyclomatic": 6,
+        "entropy": 4.52
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.372Z",
+          "mi": 59.4,
+          "cognitive": 2,
+          "nesting": 1,
+          "lines": 28,
+          "maxCyclomatic": 6,
+          "entropy": 4.52
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/components/MessageFeed.tsx": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.396Z",
+        "mi": 49.4,
+        "cognitive": 16,
+        "nesting": 2,
+        "lines": 62,
+        "maxCyclomatic": 15,
+        "entropy": 5.39
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.396Z",
+          "mi": 49.4,
+          "cognitive": 16,
+          "nesting": 2,
+          "lines": 62,
+          "maxCyclomatic": 15,
+          "entropy": 5.39
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/components/Composer.tsx": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:30:34.416Z",
+        "mi": 47.9,
+        "cognitive": 25,
+        "nesting": 3,
+        "lines": 71,
+        "maxCyclomatic": 23,
+        "entropy": 5.53
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:30:34.416Z",
+          "mi": 47.9,
+          "cognitive": 25,
+          "nesting": 3,
+          "lines": 71,
+          "maxCyclomatic": 23,
+          "entropy": 5.53
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/main.tsx": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:36:17.440Z",
+        "mi": 66.3,
+        "cognitive": 0,
+        "nesting": 0,
+        "lines": 9,
+        "maxCyclomatic": 1,
+        "entropy": 3.04
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:36:17.440Z",
+          "mi": 66.3,
+          "cognitive": 0,
+          "nesting": 0,
+          "lines": 9,
+          "maxCyclomatic": 1,
+          "entropy": 3.04
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/components/UserList.tsx": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:43:08.064Z",
+        "mi": 62.2,
+        "cognitive": 4,
+        "nesting": 2,
+        "lines": 25,
+        "maxCyclomatic": 5,
+        "entropy": 4.52
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:43:08.064Z",
+          "mi": 62.2,
+          "cognitive": 4,
+          "nesting": 2,
+          "lines": 25,
+          "maxCyclomatic": 5,
+          "entropy": 4.52
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/exercise/components/UsernamePrompt.tsx": {
+      "latest": {
+        "commit": "db9816e",
+        "timestamp": "2026-05-31T20:43:08.106Z",
+        "mi": 53.6,
+        "cognitive": 8,
+        "nesting": 3,
+        "lines": 49,
+        "maxCyclomatic": 7,
+        "entropy": 5.53
+      },
+      "history": [
+        {
+          "commit": "db9816e",
+          "timestamp": "2026-05-31T20:43:08.106Z",
+          "mi": 53.6,
+          "cognitive": 8,
+          "nesting": 3,
+          "lines": 49,
+          "maxCyclomatic": 7,
+          "entropy": 5.53
         }
       ],
       "trend": "stable"
     }
   },
-  "capturedAt": "2026-05-31T16:57:15.739Z"
+  "capturedAt": "2026-05-31T20:43:13.108Z"
 }

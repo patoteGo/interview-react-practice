@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "projectRoot": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise",
+  "generatedAt": "2026-05-31T20:46:24.407Z",
+  "seq": 24,
+  "files": {
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/server/index.mjs": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/server/index.mjs",
+      "mtimeMs": 1780246771541.309,
+      "size": 6213,
+      "imports": [],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx",
+      "mtimeMs": 1780246771806.4673,
+      "size": 3820,
+      "imports": [
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/Composer.tsx",
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/ConnectionBadge.tsx",
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/MessageFeed.tsx",
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UserList.tsx",
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UsernamePrompt.tsx",
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/state/useChat.ts"
+      ],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/client/useWebSocket.ts": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/client/useWebSocket.ts",
+      "mtimeMs": 1780259787211.7817,
+      "size": 8304,
+      "imports": [
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/protocol/types.ts"
+      ],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/Composer.tsx": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/Composer.tsx",
+      "mtimeMs": 1780246771909.5264,
+      "size": 2916,
+      "imports": [
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/protocol/types.ts"
+      ],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/ConnectionBadge.tsx": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/ConnectionBadge.tsx",
+      "mtimeMs": 1780246771908.7095,
+      "size": 1778,
+      "imports": [
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/protocol/types.ts"
+      ],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/MessageFeed.tsx": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/MessageFeed.tsx",
+      "mtimeMs": 1780246771910.937,
+      "size": 3471,
+      "imports": [
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/state/useChat.ts"
+      ],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UserList.tsx": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UserList.tsx",
+      "mtimeMs": 1780246771908.7615,
+      "size": 1350,
+      "imports": [],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UsernamePrompt.tsx": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UsernamePrompt.tsx",
+      "mtimeMs": 1780246771908.427,
+      "size": 2074,
+      "imports": [],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/protocol/types.ts": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/protocol/types.ts",
+      "mtimeMs": 1780246771908.9402,
+      "size": 3332,
+      "imports": [],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/state/useChat.ts": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/state/useChat.ts",
+      "mtimeMs": 1780246771909.8186,
+      "size": 7871,
+      "imports": [
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/client/useWebSocket.ts",
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/protocol/types.ts"
+      ],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/main.tsx": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/main.tsx",
+      "mtimeMs": 1780193494105.3901,
+      "size": 233,
+      "imports": [
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx",
+        "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/styles.css"
+      ],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/styles.css": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/styles.css",
+      "mtimeMs": 1780246771910.3054,
+      "size": 9632,
+      "imports": [],
+      "lastSeq": 0
+    },
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/vite.config.ts": {
+      "path": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/vite.config.ts",
+      "mtimeMs": 1780193494105.1348,
+      "size": 133,
+      "imports": [],
+      "lastSeq": 0
+    }
+  },
+  "symbols": {},
+  "reverseDeps": {
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/server/index.mjs": [],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/main.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/client/useWebSocket.ts": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/state/useChat.ts"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/Composer.tsx": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/ConnectionBadge.tsx": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/MessageFeed.tsx": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UserList.tsx": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/UsernamePrompt.tsx": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/protocol/types.ts": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/client/useWebSocket.ts",
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/Composer.tsx",
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/ConnectionBadge.tsx",
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/state/useChat.ts"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/state/useChat.ts": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/App.tsx",
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/exercise/components/MessageFeed.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/main.tsx": [],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/styles.css": [
+      "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/src/main.tsx"
+    ],
+    "/Users/patote/learn/interview/interview-react-practice/websocket-exercise/vite.config.ts": []
+  },
+  "cachedExports": [],
+  "projectRulesScan": {
+    "rules": [],
+    "hasCustomRules": false
+  },
+  "projectIndex": {
+    "entryCount": 8
+  },
+  "startupScan": {
+    "cwd": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise",
+    "scanRoot": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise",
+    "projectRoot": "/Users/patote/learn/interview/interview-react-practice/websocket-exercise",
+    "canWarmCaches": true,
+    "sourceFileCount": 14
+  },
+  "languageProfile": {
+    "present": {
+      "jsts": true,
+      "python": false,
+      "go": false,
+      "rust": false,
+      "cxx": false,
+      "cmake": false,
+      "fish": false,
+      "shell": false,
+      "json": false,
+      "markdown": false,
+      "css": false,
+      "yaml": false,
+      "sql": false,
+      "ruby": false,
+      "html": false,
+      "docker": false,
+      "php": false,
+      "powershell": false,
+      "prisma": false,
+      "csharp": false,
+      "fsharp": false,
+      "java": false,
+      "kotlin": false,
+      "swift": false,
+      "dart": false,
+      "lua": false,
+      "zig": false,
+      "haskell": false,
+      "elixir": false,
+      "gleam": false,
+      "ocaml": false,
+      "clojure": false,
+      "terraform": false,
+      "nix": false,
+      "toml": false
+    },
+    "configured": {
+      "jsts": true
+    },
+    "counts": {
+      "jsts": 12
+    },
+    "detectedKinds": [
+      "jsts"
+    ]
+  }
+}
